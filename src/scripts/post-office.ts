@@ -27,9 +27,16 @@ export class PostOffice implements PostService {
     }
 
     sendPackage(sender: Client, receiver: Client, transactedBy: PostCompany, pack: Package): void {
+        let transaction: Transaction;
 
+        this._transactionLog.push(transaction);
     }
     getPackage(receiver: Client, sender: Client, transactedBy: PostCompany, pack: Package): void {
+        let transaction: Transaction;
 
+        this._transactionLog.push(transaction);
+    }
+    getTransactionsLog(): Transaction[] {
+        return this._transactionLog;
     }
 }
