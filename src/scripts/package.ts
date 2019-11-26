@@ -5,8 +5,8 @@ export class Package implements IPackage {
     constructor(
         public type: string,
         public name: string,
-        public weight: number,
-        public price: number,
+        public weight: string,
+        public price: string,
         public owner: Client | string = "no information"
     ) { }
     getInfo(): string {

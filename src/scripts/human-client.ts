@@ -1,5 +1,6 @@
 import { Client } from "./client";
 import { Package } from "./package";
+import { IPackage } from "./interfaces/package-interface";
 
 export class HumanClient extends Client {
     constructor(
@@ -16,5 +17,8 @@ export class HumanClient extends Client {
     }
     get age(): number {
         return this._age;
+    }
+    createPack(pack: IPackage) {
+        this.addPack(new Package(pack.type, pack.name, pack.weight, pack.price, this));
     }
 }
