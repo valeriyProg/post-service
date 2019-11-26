@@ -6,9 +6,9 @@ export abstract class Client {
         private _name: string,
         private _adress: string,
         private _telephone: string,
-        private _havingPacks: Package[],
-        private _sendedPacks: Package[],
-        private _acceptedPacks: Package[]) { }
+        private _allPacks: Package[] = [],
+        private _sendedPacks: Package[] = [],
+        private _acceptedPacks: Package[] = []) { }
 
     get category(): string {
         return this._category
@@ -22,15 +22,15 @@ export abstract class Client {
     get telephone(): string {
         return this._telephone;
     }
-    get havingPacks(): Package[] {
-        return this._havingPacks;
+    get allPacks(): Package[] {
+        return this._allPacks;
     }
-    addHavingPack(pack: Package) {
-        this._havingPacks.push(pack);
+    addPack(pack: Package) {
+        this._allPacks.push(pack);
     }
-    deleteHavingPack(pack: Package) {
-        let index = this._havingPacks.indexOf(pack);
-        this._havingPacks.splice(index, 1);
+    deletePack(pack: Package) {
+        let index = this._allPacks.indexOf(pack);
+        this._allPacks.splice(index, 1);
     }
     get sendedPacks(): Package[] {
         return this._sendedPacks;

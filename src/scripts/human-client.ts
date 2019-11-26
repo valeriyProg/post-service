@@ -6,11 +6,15 @@ export class HumanClient extends Client {
         category: string,
         name: string,
         adress: string,
+        private _age: number,
         telephone: string,
-        haveMails: Package[],
-        sendedMails: Package[],
-        acceptedMails: Package[]
+        havingPacks: Package[] = [],
+        sendedPacks: Package[] = [],
+        acceptedPacks: Package[] = []
     ) {
-        super(category, name, adress, telephone, haveMails, sendedMails, acceptedMails);
+        super(category, name, adress, telephone, havingPacks, sendedPacks, acceptedPacks);
+    }
+    get age(): number {
+        return this._age;
     }
 }

@@ -7,9 +7,10 @@ export class Package implements IPackage {
         public name: string,
         public weight: number,
         public price: number,
-        public owner: Client
+        public owner: Client | string = "no information"
     ) { }
     getInfo(): string {
-        return `Package:\n Name: ${this.name} \n Type: ${this.type}\n Weight: ${this.weight} \nOwner: ${this.owner.name} Price:  ${this.price}\n`;
+        let owner = this.owner instanceof Client ? this.owner.name : "no info";
+        return `Package:\n Name: ${this.name} \n Type: ${this.type}\n Weight: ${this.weight} \nOwner: ${owner} Price:  ${this.price}\n`;
     }
 }
