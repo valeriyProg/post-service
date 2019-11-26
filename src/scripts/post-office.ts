@@ -1,13 +1,16 @@
 import { PostService } from "./interfaces/service";
 import { PostCompany } from "./post-company";
 import { Client } from "./client";
+import { Package } from "./package";
+import { Transaction } from "./interfaces/transaction";
 
 export class PostOffice implements PostService {
     constructor(
         private _name: string,
         private _city: string,
         private _owner: PostCompany,
-        private _id: string
+        private _id: string,
+        private _transactionLog: Transaction[] = []
     ) { }
 
     get name(): string {
@@ -23,6 +26,10 @@ export class PostOffice implements PostService {
         return this._id;
     }
 
-    sendPackage(sender: Client, receiver: Client, transactedBy: PostCompany): void { }
-    getPackage(receiver: Client, sender: Client, transactedBy: PostCompany): void { }
+    sendPackage(sender: Client, receiver: Client, transactedBy: PostCompany, pack: Package): void {
+
+    }
+    getPackage(receiver: Client, sender: Client, transactedBy: PostCompany, pack: Package): void {
+
+    }
 }

@@ -1,4 +1,4 @@
-import { Package } from "./interfaces/package";
+import { Package } from "./package";
 
 export abstract class Client {
     constructor(

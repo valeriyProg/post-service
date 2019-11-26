@@ -1,5 +1,3 @@
-import { PostCompany } from "./post-company";
-
 export abstract class Organisation {
     constructor(
         protected _id: string,

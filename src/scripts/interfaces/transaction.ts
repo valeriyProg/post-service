@@ -1,6 +1,7 @@
-import { Package } from "./package";
 import { Client } from "../client";
 import { PostOffice } from "../post-office";
+import { Package } from "../package";
+
 
 export interface Transaction {
     id: string;
