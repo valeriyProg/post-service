@@ -1,1 +1,1 @@
-# base-webpack-ts-config
+# simple post service
