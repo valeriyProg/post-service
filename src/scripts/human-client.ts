@@ -26,13 +26,13 @@ export class HumanClient extends Client {
         this.allPacks.forEach(elem => {
             packs += elem.getInfo() + '\n';
         });
-        return ` 
-            Client Iformation: 
-            Category: ${this.category};
-            Name: ${this.name};
-            Adress: ${this.adress};
-            Age: ${this._age};
-            Telephone: ${this.telephone};
-            Packages: ${packs}`;
+        return `Client Iformation:
+        Category: ${this.category};
+        Name: ${this.name};
+        Adress: ${this.adress};
+        Age: ${this._age};
+        Telephone: ${this.telephone};
+        nPackages: 
+            ${packs}`;
     }
 }

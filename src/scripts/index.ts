@@ -1,8 +1,12 @@
 import { HumanClient } from "./human-client";
 import { PostCompany } from "./post-company";
 
-let ivan = new HumanClient('human', 'Ivan Ivanov', 'Khmelnitskiy, Svoboda str. 12/1', 26, '1-2-3-4');
-let oleg = new HumanClient('human', 'Oleg Olegovych', 'Khmelnitskiy, Bandera str. 22/5', 26, '4-22-31-44');
+let ivan = new HumanClient(
+    'human', 'Ivan Ivanov',
+    'Khmelnitskiy, Svoboda str. 12/1', 26, '1-2-3-4');
+let oleg = new HumanClient(
+    'human', 'Oleg Olegovych',
+    'Khmelnitskiy, Bandera str. 22/5', 26, '4-22-31-44');
 
 ivan.createPack({
     type: 'box',
@@ -17,10 +21,14 @@ oleg.createPack({
     price: '$4'
 });
 
-const ukrPoshta = new PostCompany('0001', 'Ukraine Post', 'Kyiv, Shevchenka street, 23', 'Mr. X');
+const ukrPoshta = new PostCompany(
+    '0001', 'Ukraine Post',
+    'Kyiv, Shevchenka street, 23', 'Mr. X');
 ukrPoshta.createOffice({ name: 'UkrPoshta Lviv ', city: 'Lviv', id: '1' });
 
-const novaPoshta = new PostCompany('012081', 'Nova Poshta', 'Kyiv, Maidan Nezalejnosti, 2', 'Mr. Y');
+const novaPoshta = new PostCompany(
+    '012081', 'Nova Poshta',
+    'Kyiv, Maidan Nezalejnosti, 2', 'Mr. Y');
 novaPoshta.createOffice({ name: 'NovaPoshta Kherson ', city: 'Kherson', id: '1' });
 
 console.log(ivan.toString());
