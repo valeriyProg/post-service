@@ -23,16 +23,16 @@ export class HumanClient extends Client {
     }
     toString(): string {
         let packs: string = '';
-        this.allPacks.forEach(elem => {
-            packs += elem.getInfo() + '\n';
+        this.allPacks.forEach((elem, index) => {
+            packs += "#" + index + elem.getInfo() + "\n";
         });
-        return `Client Iformation:
+        return `::CLIENT INFORMATION::
         Category: ${this.category};
         Name: ${this.name};
         Adress: ${this.adress};
         Age: ${this._age};
         Telephone: ${this.telephone};
-        nPackages: 
-            ${packs}`;
+        ::Packages:: 
+        ${packs}`;
     }
 }

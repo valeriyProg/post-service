@@ -43,19 +43,13 @@ console.log(ivan.toString());
 console.log(oleg.toString());
 
 console.log("::::::::::TRANSACTION - BEGIN:::::::::");
-
-ukrPostOfficeLviv.showStore();
 ukrPostOfficeLviv.sendPackage(ivan, oleg, ukrPostOfficeKyiv, ivan.getPack('Box 1', 'box'));
 console.log("::::::::::TRANSACTION - END:::::::::");
-// ukrPostOfficeLviv.showTransactionsLog();
-ukrPostOfficeLviv.showStore();
 
 console.log(ivan.toString());
 console.log("KYIV OFFICE STORE BEFORE GIVE:");
-
 ukrPostOfficeKyiv.showStore();
 ukrPostOfficeKyiv.givePackToClient(oleg);
 console.log("KYIV OFFICE STORE AFTER GIVING:");
-
-// ukrPostOfficeKyiv.showTransactionsLog();
+ukrPostOfficeKyiv.showStore();
 console.log(oleg.toString());

@@ -79,6 +79,7 @@ export class PostOffice implements PostService {
         if (client.waitingPackFor.length === 1) {
             let i = this._store.indexOf(client.waitingPackFor[0]);
             client.addPack(this._store[i]);
+            this._store.splice(i, 1);
         }
     }
     getTransactionsLog(): Transaction[] {
@@ -102,11 +103,24 @@ export class PostOffice implements PostService {
         console.log(log);
     }
     showStore(): void {
-        console.log("STORE: " + this._store);
+        console.log("STORE OF " + this.name + ":");
+        let log = '';
+        if (this._store.length === 0) {
+            return console.log("[EMPTY]");
+        }
+        this._store.forEach((elem, index) => {
+            log += "Package #" + index + ":\n";
+            log += "Type: " + elem.type + "\n";
+            log += "Name: " + elem.name + '\n';
+            log += "Owner: " + elem.owner.name + "\n";
+            log += "Price: " + elem.price + "\n";
+            log += "Weight: " + elem.weight + "\n";
+        });
+        console.log(log);
     }
     toString(): string {
         return `
-            Post Office Iformation: 
+            ::POST OFFICE INFORMATION:: 
             ID: ${this.id};
             Name: ${this.name};
             Adress: ${this.city};

@@ -1,5 +1,6 @@
 import { IPackage } from "./interfaces/package-interface";
 import { Client } from "./client";
+import { PostOffice } from "./post-office";
 
 export class Package implements IPackage {
     constructor(
@@ -7,11 +8,11 @@ export class Package implements IPackage {
         public name: string,
         public weight: string,
         public price: string,
-        public owner: Client | string = "no information"
+        public owner: Client | PostOffice
     ) { }
     getInfo(): string {
-        let owner = this.owner instanceof Client ? this.owner.name : "no info";
-        return `Package:
+        let owner = this.owner instanceof Client ? this.owner.name : this.owner.name;
+        return `
         Name: ${this.name};
         Type: ${this.type};
         Owner: ${owner};
