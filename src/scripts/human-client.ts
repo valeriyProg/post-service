@@ -22,12 +22,17 @@ export class HumanClient extends Client {
         this.addPack(new Package(pack.type, pack.name, pack.weight, pack.price, this));
     }
     toString(): string {
+        let packs: string = '';
+        this.allPacks.forEach(elem => {
+            packs += elem.getInfo() + '\n';
+        });
         return ` 
             Client Iformation: 
             Category: ${this.category};
             Name: ${this.name};
             Adress: ${this.adress};
             Age: ${this._age};
-            Telephone: ${this.telephone};`;
+            Telephone: ${this.telephone};
+            Packages: ${packs}`;
     }
 }
