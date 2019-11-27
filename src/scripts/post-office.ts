@@ -5,6 +5,8 @@ import { Package } from "./package";
 import { Transaction } from "./interfaces/transaction";
 
 export class PostOffice implements PostService {
+    private _transactionCount: number = 0;
+    private _store: Package[] = [];
     constructor(
         private _name: string,
         private _city: string,
@@ -43,16 +45,33 @@ export class PostOffice implements PostService {
             console.log("client not founded");
         }
     }
-    sendPackage(sender: Client, receiver: Client, transactedBy: PostCompany, pack: Package): void {
+    sendPackage(sender: Client, receiver: Client, transactedTo: PostOffice, pack: Package): void {
+        this._transactionCount++;
         let transaction: Transaction;
-
+        transaction.id = this._transactionCount.toString();
+        transaction.method = "send";
+        transaction.package = pack;
+        transaction.sendFromClient = sender;
+        transaction.sendFromOffice = this;
+        transaction.sendToClient = receiver;
+        transaction.sendToOffice = transactedTo;
         this._transactionLog.push(transaction);
+        // receiver.addPack(pack);
+        transactedTo.addPackage(receiver, sender, this, pack);
     }
-    getPackage(receiver: Client, sender: Client, transactedBy: PostCompany, pack: Package): void {
+    addPackage(receiver: Client, sender: Client, transactedFrom: PostOffice, pack: Package): void {
         let transaction: Transaction;
-
+        transaction.id = this._transactionCount.toString();
+        transaction.method = "get";
+        transaction.package = pack;
+        transaction.sendFromClient = sender;
+        transaction.sendFromOffice = transactedFrom;
+        transaction.sendToClient = receiver;
+        transaction.sendToOffice = this;
         this._transactionLog.push(transaction);
+        this._store.push(pack);
     }
+
     getTransactionsLog(): Transaction[] {
         return this._transactionLog;
     }

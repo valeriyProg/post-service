@@ -25,6 +25,21 @@ export abstract class Client {
     get allPacks(): Package[] {
         return this._allPacks;
     }
+    getPack(name: string, type: string): Package {
+        let i;
+        this._allPacks.forEach((elem, index) => {
+            if (elem.name === name && type === elem.type) {
+                return i = index;
+            }
+        });
+        // return this._allPacks.splice(i, 1);
+        // console.log(i);
+        console.log(this.allPacks);
+        console.log(this.allPacks.splice(i, 1)[0]);
+        console.log(this.allPacks);
+
+        return this.allPacks.splice(i, 1)[0];
+    }
     addPack(pack: Package) {
         this._allPacks.push(pack);
     }

@@ -14,6 +14,12 @@ ivan.createPack({
     weight: '300g',
     price: '$22'
 });
+ivan.createPack({
+    type: 'box',
+    name: 'Box 2',
+    weight: '400g',
+    price: '$42'
+});
 oleg.createPack({
     type: 'banderol',
     name: 'small banderol',
@@ -24,15 +30,20 @@ oleg.createPack({
 const ukrPoshta = new PostCompany(
     '0001', 'Ukraine Post',
     'Kyiv, Shevchenka street, 23', 'Mr. X');
-ukrPoshta.createOffice({ name: 'UkrPoshta Lviv ', city: 'Lviv', id: '1' });
+const ukrPostOfficeLviv = ukrPoshta.createOffice({ name: 'UkrPoshta Lviv ', city: 'Lviv', id: '1' });
+const ukrPostOfficeKyiv = ukrPoshta.createOffice({ name: 'UkrPoshta Kyiv', city: 'Kyiv', id: '2' });
 
 const novaPoshta = new PostCompany(
     '012081', 'Nova Poshta',
     'Kyiv, Maidan Nezalejnosti, 2', 'Mr. Y');
-novaPoshta.createOffice({ name: 'NovaPoshta Kherson ', city: 'Kherson', id: '1' });
+const novaPoshtaOffice = novaPoshta.createOffice({ name: 'NovaPoshta Kherson ', city: 'Kherson', id: '1' });
 
+//Неявно, по нормальному,  toString викликає  тільки Microsoft Edge, того викликаю явно
 console.log(ivan.toString());
 console.log(oleg.toString());
-
+// ivan.getPack('Box 1', 'box');
 console.log(ukrPoshta.toString());
 console.log(novaPoshta.toString());
+console.log("::::::::::TRANSACTION - BEGIN:::::::::");
+ukrPostOfficeLviv.sendPackage(ivan, oleg, ukrPostOfficeKyiv, ivan.getPack('Box 1', 'box'));
+console.log("::::::::::TRANSACTION - END:::::::::");

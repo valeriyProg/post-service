@@ -5,6 +5,7 @@ import { Package } from "../package";
 
 export interface Transaction {
     id: string;
+    method: string;
     package: Package;
     sendFromOffice: PostOffice;
     sendToOffice: PostOffice;
