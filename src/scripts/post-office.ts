@@ -60,10 +60,10 @@ export class PostOffice implements PostService {
     toString(): string {
         return `
             Post Office Iformation: 
-            ID: ${this.id};\n
-            Name: ${this.name};\n
-            Adress: ${this.city};\n
-            Owner: ${this.owner.name};\n
+            ID: ${this.id};
+            Name: ${this.name};
+            Adress: ${this.city};
+            Owner: ${this.owner.name};
         `;
     }
 }

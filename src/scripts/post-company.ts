@@ -52,10 +52,10 @@ export class PostCompany implements ICompany {
     toString(): string {
         return `
             Post Company Iformation: 
-            ID: ${this.id};\n
-            Name: ${this.name};\n
-            Adress: ${this.adress};\n
-            Owner: ${this.owner};\n
+            ID: ${this.id};
+            Name: ${this.name};
+            Adress: ${this.adress};
+            Owner: ${this.owner};
         `;
     }
 }

@@ -24,10 +24,10 @@ export class HumanClient extends Client {
     toString(): string {
         return ` 
             Client Iformation: 
-            Category: ${this.category};\n
-            Name: ${this.name};\n
-            Adress: ${this.adress};\n
-            Age: ${this._age};\n
-            Telephone: ${this.telephone};\n `;
+            Category: ${this.category};
+            Name: ${this.name};
+            Adress: ${this.adress};
+            Age: ${this._age};
+            Telephone: ${this.telephone};`;
     }
 }
