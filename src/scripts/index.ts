@@ -45,5 +45,13 @@ console.log(oleg.toString());
 console.log(ukrPoshta.toString());
 console.log(novaPoshta.toString());
 console.log("::::::::::TRANSACTION - BEGIN:::::::::");
+ukrPostOfficeLviv.getTransactionsLog();
+ukrPostOfficeLviv.showStore();
 ukrPostOfficeLviv.sendPackage(ivan, oleg, ukrPostOfficeKyiv, ivan.getPack('Box 1', 'box'));
+console.log(ivan.toString());
+ukrPostOfficeLviv.getTransactionsLog();
+ukrPostOfficeLviv.showStore();
+
+ukrPostOfficeKyiv.showStore();
+ukrPostOfficeKyiv.getTransactionsLog();
 console.log("::::::::::TRANSACTION - END:::::::::");

@@ -47,27 +47,45 @@ export class PostOffice implements PostService {
     }
     sendPackage(sender: Client, receiver: Client, transactedTo: PostOffice, pack: Package): void {
         this._transactionCount++;
-        let transaction: Transaction;
-        transaction.id = this._transactionCount.toString();
-        transaction.method = "send";
-        transaction.package = pack;
-        transaction.sendFromClient = sender;
-        transaction.sendFromOffice = this;
-        transaction.sendToClient = receiver;
-        transaction.sendToOffice = transactedTo;
+        let transaction: Transaction = {
+            id: this._transactionCount.toString(),
+            method: "send",
+            package: pack,
+            sendFromClient: sender,
+            sendFromOffice: this,
+            sendToClient: receiver,
+            sendToOffice: transactedTo
+        };
+        // transaction.id = this._transactionCount.toString();
+        // transaction.method = "send";
+        // transaction.package = pack;
+        // transaction.sendFromClient = sender;
+        // transaction.sendFromOffice = this;
+        // transaction.sendToClient = receiver;
+        // transaction.sendToOffice = transactedTo;
         this._transactionLog.push(transaction);
         // receiver.addPack(pack);
         transactedTo.addPackage(receiver, sender, this, pack);
     }
     addPackage(receiver: Client, sender: Client, transactedFrom: PostOffice, pack: Package): void {
-        let transaction: Transaction;
-        transaction.id = this._transactionCount.toString();
-        transaction.method = "get";
-        transaction.package = pack;
-        transaction.sendFromClient = sender;
-        transaction.sendFromOffice = transactedFrom;
-        transaction.sendToClient = receiver;
-        transaction.sendToOffice = this;
+        this._transactionCount++;
+        let transaction: Transaction = {
+            id: this._transactionCount.toString(),
+            method: "get",
+            package: pack,
+            sendFromClient: sender,
+            sendFromOffice: transactedFrom,
+            sendToClient: receiver,
+            sendToOffice: this
+        };
+        // let transaction: Transaction;
+        // transaction.id = this._transactionCount.toString();
+        // transaction.method = "get";
+        // transaction.package = pack;
+        // transaction.sendFromClient = sender;
+        // transaction.sendFromOffice = transactedFrom;
+        // transaction.sendToClient = receiver;
+        // transaction.sendToOffice = this;
         this._transactionLog.push(transaction);
         this._store.push(pack);
     }
@@ -75,7 +93,9 @@ export class PostOffice implements PostService {
     getTransactionsLog(): Transaction[] {
         return this._transactionLog;
     }
-
+    showStore(): void {
+        console.log(this._store);
+    }
     toString(): string {
         return `
             Post Office Iformation: 

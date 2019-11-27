@@ -11,5 +11,5 @@ export interface Transaction {
     sendToOffice: PostOffice;
     sendFromClient: Client;
     sendToClient: Client;
-    getTransactionInfo(): string;
+    // getTransactionInfo(): string;
 }
