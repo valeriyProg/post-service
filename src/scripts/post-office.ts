@@ -107,6 +107,8 @@ export class PostOffice implements PostService {
         let log = '';
         if (this._store.length === 0) {
             return console.log("[EMPTY]");
+        } else {
+            // realize soon
         }
         this._store.forEach((elem, index) => {
             log += "Package #" + index + ":\n";
