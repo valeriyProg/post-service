@@ -8,7 +8,9 @@ export abstract class Client {
         private _telephone: string,
         private _allPacks: Package[] = [],
         private _sendedPacks: Package[] = [],
-        private _acceptedPacks: Package[] = []) { }
+        private _acceptedPacks: Package[] = [],
+        public waitingPackFor: Package[] = []
+    ) { }
 
     get category(): string {
         return this._category
@@ -32,13 +34,8 @@ export abstract class Client {
                 return i = index;
             }
         });
-        // return this._allPacks.splice(i, 1);
-        // console.log(i);
-        console.log(this.allPacks);
-        console.log(this.allPacks.splice(i, 1)[0]);
-        console.log(this.allPacks);
-
-        return this.allPacks.splice(i, 1)[0];
+        let temp = this.allPacks.splice(i, 1);
+        return temp[0];
     }
     addPack(pack: Package) {
         this._allPacks.push(pack);

@@ -41,17 +41,21 @@ const novaPoshtaOffice = novaPoshta.createOffice({ name: 'NovaPoshta Kherson ', 
 //Неявно, по нормальному,  toString викликає  тільки Microsoft Edge, того викликаю явно
 console.log(ivan.toString());
 console.log(oleg.toString());
-// ivan.getPack('Box 1', 'box');
-console.log(ukrPoshta.toString());
-console.log(novaPoshta.toString());
+
 console.log("::::::::::TRANSACTION - BEGIN:::::::::");
-ukrPostOfficeLviv.getTransactionsLog();
+
 ukrPostOfficeLviv.showStore();
 ukrPostOfficeLviv.sendPackage(ivan, oleg, ukrPostOfficeKyiv, ivan.getPack('Box 1', 'box'));
-console.log(ivan.toString());
-ukrPostOfficeLviv.getTransactionsLog();
+console.log("::::::::::TRANSACTION - END:::::::::");
+// ukrPostOfficeLviv.showTransactionsLog();
 ukrPostOfficeLviv.showStore();
 
+console.log(ivan.toString());
+console.log("KYIV OFFICE STORE BEFORE GIVE:");
+
 ukrPostOfficeKyiv.showStore();
-ukrPostOfficeKyiv.getTransactionsLog();
-console.log("::::::::::TRANSACTION - END:::::::::");
+ukrPostOfficeKyiv.givePackToClient(oleg);
+console.log("KYIV OFFICE STORE AFTER GIVING:");
+
+// ukrPostOfficeKyiv.showTransactionsLog();
+console.log(oleg.toString());

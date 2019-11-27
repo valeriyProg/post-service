@@ -56,16 +56,10 @@ export class PostOffice implements PostService {
             sendToClient: receiver,
             sendToOffice: transactedTo
         };
-        // transaction.id = this._transactionCount.toString();
-        // transaction.method = "send";
-        // transaction.package = pack;
-        // transaction.sendFromClient = sender;
-        // transaction.sendFromOffice = this;
-        // transaction.sendToClient = receiver;
-        // transaction.sendToOffice = transactedTo;
         this._transactionLog.push(transaction);
         // receiver.addPack(pack);
         transactedTo.addPackage(receiver, sender, this, pack);
+        receiver.waitingPackFor.push(pack);
     }
     addPackage(receiver: Client, sender: Client, transactedFrom: PostOffice, pack: Package): void {
         this._transactionCount++;
@@ -78,23 +72,37 @@ export class PostOffice implements PostService {
             sendToClient: receiver,
             sendToOffice: this
         };
-        // let transaction: Transaction;
-        // transaction.id = this._transactionCount.toString();
-        // transaction.method = "get";
-        // transaction.package = pack;
-        // transaction.sendFromClient = sender;
-        // transaction.sendFromOffice = transactedFrom;
-        // transaction.sendToClient = receiver;
-        // transaction.sendToOffice = this;
         this._transactionLog.push(transaction);
         this._store.push(pack);
     }
-
+    givePackToClient(client: Client) {
+        if (client.waitingPackFor.length === 1) {
+            let i = this._store.indexOf(client.waitingPackFor[0]);
+            client.addPack(this._store[i]);
+        }
+    }
     getTransactionsLog(): Transaction[] {
         return this._transactionLog;
     }
+    showTransactionsLog(): void {
+        let log = '';
+        if (this._transactionLog.length === 0) {
+            return console.log("NO TRANSACTIONS YET");
+        }
+        this._transactionLog.forEach((elem, index) => {
+            log += `TRANSACTION #${index}
+            ID: ${elem.id};
+            Method: ${elem.method}
+            Package:  ${elem.package}
+            SendFromClient: ${ elem.sendFromClient}
+            sendFromOffice: ${elem.sendFromOffice}
+            Sent To Client: ${elem.sendToClient}
+            To Office: ${elem.sendToOffice}`;
+        });
+        console.log(log);
+    }
     showStore(): void {
-        console.log(this._store);
+        console.log("STORE: " + this._store);
     }
     toString(): string {
         return `
