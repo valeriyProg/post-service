@@ -44,5 +44,4 @@ export abstract class Client {
     addAcceptedPack(pack: Package) {
         this._acceptedPacks.push(pack);
     }
-    abstract toString(): string;
 }

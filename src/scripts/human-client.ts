@@ -21,13 +21,4 @@ export class HumanClient extends Client {
     createPack(pack: IPackage) {
         this.addPack(new Package(pack.type, pack.name, pack.weight, pack.price, this));
     }
-    toString(): string {
-        return ` 
-            Client Iformation: 
-            Category: ${this.category};\n
-            Name: ${this.name};\n
-            Adress: ${this.adress};\n
-            Age: ${this._age};\n
-            Telephone: ${this.telephone};\n `;
-    }
 }

@@ -10,7 +10,6 @@ export class PostOffice implements PostService {
         private _city: string,
         private _owner: PostCompany,
         private _id: string,
-        private _clients: Client[] = [],
         private _transactionLog: Transaction[] = []
     ) { }
 
@@ -26,23 +25,7 @@ export class PostOffice implements PostService {
     get id(): string {
         return this._id;
     }
-    get client(): Client[] {
-        return this._clients;
-    }
-    addClient(client: Client): void {
-        this._clients.push(client);
-    }
-    addClients(clients: Client[]): void {
-        this._clients.concat(clients);
-    }
-    removeClient(client: Client): void {
-        try {
-            let index = this._clients.indexOf(client);
-            this._clients.splice(index, 1);
-        } catch {
-            console.log("client not founded");
-        }
-    }
+
     sendPackage(sender: Client, receiver: Client, transactedBy: PostCompany, pack: Package): void {
         let transaction: Transaction;
 
@@ -55,15 +38,5 @@ export class PostOffice implements PostService {
     }
     getTransactionsLog(): Transaction[] {
         return this._transactionLog;
-    }
-
-    toString(): string {
-        return `
-            Post Office Iformation: 
-            ID: ${this.id};\n
-            Name: ${this.name};\n
-            Adress: ${this.city};\n
-            Owner: ${this.owner.name};\n
-        `;
     }
 }
